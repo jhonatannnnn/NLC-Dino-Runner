@@ -1,10 +1,13 @@
 import pygame
 import os
 
+TITTLE = "Dino Runner Internet off"
+COLOR = (40, 130, 181)
+
 # Global Constants
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
-FPS = 30
+FPS = 60
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 # Assets Constants
@@ -65,5 +68,7 @@ HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
+
+ICON = pygame.image.load(os.path.join(IMG_DIR, 'DinoWallpaper.png'))
 
 DEFAULT_TYPE = "default"

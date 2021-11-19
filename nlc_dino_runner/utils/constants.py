@@ -2,7 +2,7 @@ import pygame
 import os
 
 TITTLE = "Dino Runner Internet off"
-COLOR = (40, 130, 181)
+COLOR = (255, 255, 255)
 
 # Global Constants
 SCREEN_HEIGHT = 600

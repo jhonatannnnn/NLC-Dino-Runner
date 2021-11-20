@@ -71,4 +71,10 @@ HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 ICON = pygame.image.load(os.path.join(IMG_DIR, 'DinoWallpaper.png'))
 
+SHIELD_TYPE = "shield"
+
+FONT_STYLE = "freesansbold.ttf"
+
+BLACK_COLOR = (0, 0, 0)
+
 DEFAULT_TYPE = "default"

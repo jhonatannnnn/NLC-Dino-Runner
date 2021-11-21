@@ -40,8 +40,12 @@ class ObstacleManager:
                     else:
                         self.obstacles.remove(obstacle)
                         pygame.time.delay(500)
+
                         game.playing = False
+                        game.counter = 0
                         game.death_count += 1
+                        obstacle.cactus_speed = 10
+                        game.game_speed = 10
                         text_utils.emitir_sonido('mixkit-long-game-over-notification-276.wav')
                         break
 

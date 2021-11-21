@@ -2,7 +2,9 @@ import pygame
 
 from nlc_dino_runner.components.hearts import PlayerHeartManager
 from nlc_dino_runner.components.dinosaurio import Dinosaur
+from nlc_dino_runner.components.icon import DinoMenu
 from nlc_dino_runner.components.obstacles.obstacle_manager import ObstacleManager
+from nlc_dino_runner.components.powerups.cloud import Cloud
 from nlc_dino_runner.components.powerups.power_up_manager import PowerUpManager
 from nlc_dino_runner.utils import text_utils
 from nlc_dino_runner.utils.constants import (
@@ -27,9 +29,10 @@ class Game:
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.x_pos_bg = 0
         self.y_pos_bg = 420
-        self.game_speed = 15
+        self.game_speed = 10
         self.x_pos_image = SCREEN_WIDTH // 2
         self.y_pos_image = SCREEN_HEIGHT // 4
+        self.color = COLOR
         self.clock = pygame.time.Clock()
         self.player = Dinosaur()
         self.obstacle = ObstacleManager()
@@ -39,12 +42,15 @@ class Game:
         self.death_count = 0
         self.power_up_manager = PowerUpManager()
         self.player_heart_manager = PlayerHeartManager()
+        self.counter = 0
+        self.cloud = Cloud()
+        self.dino_menu = DinoMenu()
 
     def score(self):
         self.points += 1
         self.points_accountant += 1
         if self.points_accountant == 500:
-            self.game_speed += 5
+            self.game_speed += 1
             self.points_accountant = 0
         score_element, score_element_rec = text_utils.get_score_element(self.points)
         self.player.check_invincibility(self.screen)
@@ -72,7 +78,7 @@ class Game:
                                                                              height=height + 250)
             self.screen.blit(text_element, text_element_rec)
             self.screen.blit(text_element_p, text_element_rec_p)
-        self.screen.blit(ICON, (width, height))
+        self.dino_menu.draw(self.screen)
 
     def handle_key_events_on_menu(self):
         for event in pygame.event.get():
@@ -111,18 +117,29 @@ class Game:
         self.player.update(user_input)
         self.obstacle.update(self)
         self.power_up_manager.update(self.points, self.game_speed, self.player)
+        self.cloud.update(self.game_speed)
 
     def draw(self):
         self.clock.tick(FPS)
-        self.screen.fill(COLOR)
+        self.screen_update()
+        self.screen.fill(self.color)
         self.player.draw(self.screen)
         self.draw_background()
+        self.cloud.draw(self.screen)
         self.obstacle.draw(self.screen)
         self.score()
         self.power_up_manager.draw(self.screen)
         self.player_heart_manager.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
+
+    def screen_update(self):
+        self.counter += 1
+        if self.counter == 1000:
+            self.color = (71, 71, 71)
+        if self.counter == 2000:
+            self.counter = 0
+            self.color = (255, 255, 255)
 
     def draw_background(self):
         image_with = BG.get_width()

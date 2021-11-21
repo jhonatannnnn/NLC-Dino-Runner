@@ -1,6 +1,6 @@
 import random
 import pygame
-from nlc_dino_runner.components.powerups.hammer_power_up import HammerPowerUp
+from nlc_dino_runner.components.powerups.hammer_power_up import MartilloPowerUp
 from nlc_dino_runner.components.powerups.shield import Shield
 from nlc_dino_runner.utils.constants import HAMMER_POWER_UP
 
@@ -27,7 +27,7 @@ class PowerUpManager:
                 if self.option_numbers[0] <= 5:
                     self.power_ups.append(Shield())
                 else:
-                    self.power_ups.append(HammerPowerUp())
+                    self.power_ups.append(MartilloPowerUp())
             return self.power_ups
 
     def update(self, points, game_speed, player):
@@ -43,7 +43,7 @@ class PowerUpManager:
                     time_random = random.randrange(5, 8)
                     player.shield_time_up = power_up.start_time + (time_random * 1000)
                     self.power_ups.remove(power_up)
-                elif isinstance(power_up, HammerPowerUp):
+                elif isinstance(power_up, MartilloPowerUp):
                     player.hammer_enabled = HAMMER_POWER_UP
                     player.type = power_up.type
                     self.power_ups.remove(power_up)

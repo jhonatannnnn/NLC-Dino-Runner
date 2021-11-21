@@ -2,11 +2,12 @@ from pygame.sprite import Sprite
 from nlc_dino_runner.utils.constants import HAMMER, SCREEN_WIDTH
 
 
-class Hammers(Sprite):
+class Martillo(Sprite):
     def __init__(self, x, y):
+        Sprite.__init__(self)
         self.image = HAMMER
         self.rect = self.image.get_rect()
-        self.rect.center.x = x
+        self.rect.centerx = x
         self.rect.bottom = y
         self.speedy = 10
 

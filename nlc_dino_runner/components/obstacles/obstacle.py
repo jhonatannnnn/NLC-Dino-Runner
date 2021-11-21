@@ -12,9 +12,9 @@ class Obstacle(Sprite):
         self.cactus_speed = 15
         self.time = 0
 
-    def update(self, obstacles):
-        self.rect.x -= 15
-        if self.rect.x < -self.rect.width:
+    def update(self, game_speed, obstacles):
+        self.rect.x -= game_speed
+        if self.rect.x < -self.rect.width and obstacles:
             obstacles.pop()
 
     def draw(self, screen):

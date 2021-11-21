@@ -1,6 +1,6 @@
 import pygame
 
-from components.hearts import PlayerHeartManager
+from nlc_dino_runner.components.hearts import PlayerHeartManager
 from nlc_dino_runner.components.dinosaurio import Dinosaur
 from nlc_dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from nlc_dino_runner.components.powerups.power_up_manager import PowerUpManager
@@ -12,7 +12,8 @@ from nlc_dino_runner.utils.constants import (
     SCREEN_WIDTH,
     COLOR,
     BG,
-    FPS
+    FPS,
+    IMG_DIR
 )
 
 
@@ -95,7 +96,7 @@ class Game:
             self.draw()
 
     def execute(self):
-        self.running = True
+        text_utils.emitir_sonido('mixkit-ominous-drums-227.wav')
         while self.running:
             if not self.playing:
                 self.show_menu()

@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 from nlc_dino_runner.utils.text_utils import get_centered_message
-from nlc_dino_runner.components.powerups.hammers import Hammers
+from nlc_dino_runner.components.powerups.hammers import Martillo
 from nlc_dino_runner.utils.constants import RUNNING, DUCKING, JUMPING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, \
     JUMPING_SHIELD, RUNNING_SHIELD, HAMMER_TYPE, RUNNING_HAMMER, DUCKING_HAMMER, JUMPING_HAMMER
 
@@ -32,9 +32,6 @@ class Dinosaur(Sprite):
         self.dino_duck = False
         self.dino_jump = False
         self.jump_speed = self.JUMP_SPEED
-        self.setup_state_booleans()
-
-    def setup_state_booleans(self):
         self.has_powerup = False
         self.shield = False
         self.show_text = False
@@ -98,7 +95,7 @@ class Dinosaur(Sprite):
         if self.step_index >= 10:
             self.step_index = 0
         if self.hammer_enabled > 0 and user_input[pygame.K_SPACE]:
-            self.hammer = Hammers(self.dino_rect.x + 100, self.dino_rect.y + 50)
+            self.hammer = Martillo(self.dino_rect.x + 100, self.dino_rect.y + 50)
             self.hammer_enabled = max(self.hammer_enabled - 1, 0)
             if self.hammer_enabled == 0:
                 self.update_to_default(HAMMER_TYPE)
@@ -120,7 +117,7 @@ class Dinosaur(Sprite):
                     screen.blit(text, textrect)
             else:
                 self.shield = False
-                self.update_to_default (SHIELD_TYPE)
+                self.update_to_default(SHIELD_TYPE)
 
     def update_to_default(self, current_type):
         if self.type == current_type:

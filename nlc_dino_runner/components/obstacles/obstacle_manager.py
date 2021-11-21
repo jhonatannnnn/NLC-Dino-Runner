@@ -40,7 +40,7 @@ class ObstacleManager:
                     else:
                         self.obstacles.remove(obstacle)
                         pygame.time.delay(500)
-
+                        game.color = (255, 255, 255)
                         game.playing = False
                         game.counter = 0
                         game.death_count += 1

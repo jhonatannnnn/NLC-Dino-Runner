@@ -1,5 +1,6 @@
 import pygame
 
+from components.hearts import PlayerHeartManager
 from nlc_dino_runner.components.dinosaurio import Dinosaur
 from nlc_dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from nlc_dino_runner.components.powerups.power_up_manager import PowerUpManager
@@ -36,6 +37,7 @@ class Game:
         self.running = True
         self.death_count = 0
         self.power_up_manager = PowerUpManager()
+        self.player_heart_manager = PlayerHeartManager()
 
     def score(self):
         self.points += 1
@@ -117,6 +119,7 @@ class Game:
         self.obstacle.draw(self.screen)
         self.score()
         self.power_up_manager.draw(self.screen)
+        self.player_heart_manager.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
@@ -132,3 +135,4 @@ class Game:
     def create_components(self):
         self.obstacle.reset_obstacles()
         self.power_up_manager.reset_power_ups(self.points)
+        self.player_heart_manager.reset_hearts()

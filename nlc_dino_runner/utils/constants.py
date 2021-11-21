@@ -77,4 +77,10 @@ FONT_STYLE = "freesansbold.ttf"
 
 BLACK_COLOR = (0, 0, 0)
 
+HAMMER_POWER_UP = 10
+
+HEART_COUNT = 4
+
+HAMMER_TYPE = "hammer"
+
 DEFAULT_TYPE = "default"
